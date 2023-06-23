@@ -26,6 +26,17 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
+        [HttpGet("getlawyersbysortid")]
+        public IActionResult GetLawyersBySortId(int sortId)
+        {
+            var result = _lawyerService.GetLawyersBySortId(sortId);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
         [HttpPost("add")]
         public IActionResult Add(Lawyer lawyer)
         {

@@ -32,6 +32,7 @@ namespace Business.Concrete
         {
             _lawyerDal.Add(lawyer);
             var result = _lawyerDal.Get(l =>
+            l.SortId == lawyer.SortId &&
             l.Name == lawyer.Name &&
             l.Position == lawyer.Position &&
             l.Description == lawyer.Description);
@@ -62,6 +63,11 @@ namespace Business.Concrete
         public IDataResult<List<Lawyer>> GetAll()
         {
             return new SuccessDataResult<List<Lawyer>>(_lawyerDal.GetAll());
+        }
+
+        public IDataResult<List<Lawyer>> GetLawyersBySortId(int sortId)
+        {
+            return new SuccessDataResult<List<Lawyer>>(_lawyerDal.GetAll(l => l.SortId == sortId));
         }
 
         //[SecuredOperation("admin")]

@@ -13,6 +13,7 @@ namespace Business.Abstract
     public interface ILawyerService
     {
         IDataResult<List<Lawyer>> GetAll();
+        IDataResult<List<Lawyer>> GetLawyersBySortId(int sortId);
         IDataResult<LawyerDetailDto> GetLawyerDetails(int lawyerId);
         IDataResult<int> Add(Lawyer lawyer);
         IResult Update(Lawyer lawyer);

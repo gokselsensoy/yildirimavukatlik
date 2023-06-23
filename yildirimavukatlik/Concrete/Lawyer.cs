@@ -10,6 +10,7 @@ namespace Entities.Concrete
     public class Lawyer : IEntity
     {
         public int Id { get; set; }
+        public int SortId { get; set; }
         public string Name { get; set; }
         public string Position { get; set; }
         public string Description { get; set; }

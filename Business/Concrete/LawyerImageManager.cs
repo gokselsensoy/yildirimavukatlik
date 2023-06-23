@@ -48,6 +48,7 @@ namespace Business.Concrete
             return new SuccessResult(Messages.LawyerImageAdded);
         }
 
+
         public IResult Delete(LawyerImage lawyerImage)
         {
             IResult rulesResult = BusinessRules.Run(CheckIfLawyerImageIdExist(lawyerImage.Id));
