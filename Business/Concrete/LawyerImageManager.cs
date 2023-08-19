@@ -87,16 +87,6 @@ namespace Business.Concrete
             return new SuccessResult(Messages.LawyerImageUpdated);
         }
 
-        private IResult CheckIfLawyerImageLimit(int lawyerId)
-        {
-            var result = _lawyerImageDal.GetAll(c => c.Id == lawyerId).Count;
-            if (result >= 5)
-            {
-                return new ErrorResult();
-            }
-            return new SuccessResult();
-        }
-
         public IDataResult<List<LawyerImage>> GetByLawyerId(int lawyerId)
         {
             var result = BusinessRules.Run(CheckLawyerImage(lawyerId));
@@ -136,7 +126,7 @@ namespace Business.Concrete
         {
 
             List<LawyerImage> lawyerImage = new List<LawyerImage>();
-            lawyerImage.Add(new LawyerImage { Id = lawyerId, Date = DateTime.Now, ImagePath = "DefaultImage.jpg" });
+            lawyerImage.Add(new LawyerImage { Id = lawyerId, Date = DateTime.Now, ImagePath = "default.png" });
             return new SuccessDataResult<List<LawyerImage>>(lawyerImage);
         }
         private IResult CheckLawyerImage(int lawyerId)
@@ -165,6 +155,16 @@ namespace Business.Concrete
             if (result >= 5)
             {
                 return new ErrorResult(Messages.LawyerImageLimitExceeded);
+            }
+            return new SuccessResult();
+        }
+
+        private IResult CheckIfLawyerImageLimit(int lawyerId)
+        {
+            var result = _lawyerImageDal.GetAll(c => c.Id == lawyerId).Count;
+            if (result >= 5)
+            {
+                return new ErrorResult();
             }
             return new SuccessResult();
         }
